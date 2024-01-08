@@ -14,8 +14,6 @@ using namespace std;
 
 const int matsize = 2000;
 
-cudaError_t addWithCuda(int* c, const int* a, const int* b, unsigned int size);
-
 __global__
 void multiply(float* m1, float* m2, float* res)
 {
@@ -28,10 +26,6 @@ void multiply(float* m1, float* m2, float* res)
 			res[i * matsize + j] = sum;
 		}
 	}
-}
-__global__
-void printid() {
-	printf("thread %d in block %d\n", threadIdx.x, blockIdx.x);
 }
 
 __global__
