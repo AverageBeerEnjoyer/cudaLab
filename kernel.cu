@@ -98,7 +98,7 @@ int multiplyWithCuda(float* m1, float* m2, float* res) {
 		dispose(dev_m1, dev_m2, dev_res);
 		return 1;
 	}
-
+	dispose(dev_m1, dev_m2, dev_res);
 
 	return 0;
 }
@@ -106,7 +106,7 @@ int multiplyWithCuda(float* m1, float* m2, float* res) {
 void report(chrono::milliseconds t) {
 	fstream ofs = fstream("output.txt", ios_base::out);
 	stringstream ss;
-	ss << "matrix size: " << matsize << endl;
+	ss << "matrix size: " << matsize <<" x " <<matsize<< endl;
 	ss << "total time: " << (float)t.count() / 1000 << endl;
 	ofs << ss.str();
 	ofs.flush();
@@ -122,7 +122,6 @@ int main() {
 	multiplyWithCuda(m1, m2, res);
 	auto dur = chrono::duration_cast<chrono::milliseconds> (chrono::system_clock::now() - start);
 
-	cout << ((float) dur.count())/1000 << endl;
-	cout << cudaGetLastError() << endl;
+	report(dur);
 	return 0;
 }

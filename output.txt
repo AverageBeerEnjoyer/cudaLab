@@ -1,0 +1,2 @@
+matrix size: 2000 x 2000
+total time: 9.736
